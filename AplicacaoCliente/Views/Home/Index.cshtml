@@ -1,0 +1,50 @@
+﻿@model EmpresaModel
+
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>#</td>
+            <td>ID</td>
+            <td>NOME</td>
+            <td>SITE</td>
+            <td>FUNCIONARIOS</td>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in (List<EmpresaModel>)ViewBag.ListaEmpresa)
+        {
+        <tr>
+            <td style="width:80px;"><button class="btn btn-default" onclick="registrar(@item.Id.ToString())">Editar</button></td>
+            <td style="width:80px;"><button class="btn btn-danger" onclick="excluir(@item.Id.ToString())">Excluir</button></td>
+            <td>@item.Id.ToString()</td>
+            <td>@item.Nome.ToString()</td>
+            <td>@item.Site.ToString()</td>
+            <td>@item.QuantidadeFuncionario.ToString()</td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+
+<button class="btn btn-block btn-primary" onclick="registrar()">Registrar</button>
+
+<script>
+    function registrar(id) {
+        if (id == null)
+        {
+            id = "";
+        }
+        else {
+            id = "/" + id;
+        }
+        window.location.href = window.location.origin + "/Home/Registrar" + id;
+    }
+
+    function excluir(id) {   
+        window.location.href = window.location.origin + "/Home/Excluir/" + id;
+    }
+</script>
